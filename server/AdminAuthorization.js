@@ -12,7 +12,7 @@ const authorization = async (req, res, next) => {
           message: "Token is not valid",
         });
       }
-      if (decoded.role === Admin._id) {
+      if (decoded.role == Admin._id) {
         req.userData = decoded;
         return next();
       }
