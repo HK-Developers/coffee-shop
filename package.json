@@ -1,0 +1,16 @@
+{
+  "name": "coffee_shop",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "client": "cd client && yarn start",
+    "server": "cd server && yarn start",
+    "dev": "concurrently -k \"yarn run server\" \"yarn run client\""
+  },
+  "repository": "https://github.com/HK-Developers/coffee-shop",
+  "author": "Shynn Huy",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^4.1.2"
+  }
+}
