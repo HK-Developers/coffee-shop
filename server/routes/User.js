@@ -5,8 +5,19 @@ const jwt = require("jsonwebtoken");
 const { UserModel, RoleModel } = require("../models/User");
 
 const AdminAuthorization = require("../AdminAuthorization");
+const Authentication = require("../Authentication");
 
-router.get("/:username", AdminAuthorization, async (req, res) => {
+router.get("/", AdminAuthorization, async (req, res) => {
+  const users = await UserModel.find();
+  if (!users)
+    return res.status(403).json({
+      success: false,
+      message: "Empty users collection",
+    });
+  return res.json(users);
+});
+
+router.get("/:username", Authentication, async (req, res) => {
   const findUser = await UserModel.findOne({ username: req.params.username });
   if (!findUser)
     return res.status(403).json({
