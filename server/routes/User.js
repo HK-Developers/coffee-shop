@@ -78,7 +78,11 @@ router.post("/login", async (req, res) => {
     });
 
   const token = jwt.sign(
-    { _id: loginUser._id, role: loginUser.role._id },
+    {
+      _id: loginUser._id,
+      username: loginUser.username,
+      role: loginUser.role._id,
+    },
     process.env.JWT_SECRET
   );
   res.header("auth-token", token).json({
@@ -100,6 +104,40 @@ router.post("/role", async (req, res) => {
   } catch (error) {
     return res.status(400).send(error);
   }
+});
+
+router.put("/changepass", Authentication, async (req, res) => {
+  const { oldpass, newpassword } = req.body;
+
+  const salt = await bcrypt.genSalt(8);
+  const hashPassChange = await bcrypt.hash(newpassword, salt);
+
+  const userChangePass = await UserModel.findOne({
+    username: req.userData.username,
+  });
+
+  const validPass = await bcrypt.compare(oldpass, userChangePass.password);
+  if (!validPass)
+    return res.status(401).json({
+      success: false,
+      message: "Password is wrong",
+    });
+
+  const updateUser = await UserModel.updateOne(
+    { username: req.userData.username },
+    {
+      password: hashPassChange,
+    }
+  )
+    .then(result => {
+      return res.status(200).json({
+        success: true,
+        message: "Password changed",
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
 });
 
 module.exports = router;

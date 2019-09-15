@@ -1,20 +1,20 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import "./App.scss";
 import { UserProvider } from "./Contexts/UserContext";
-import { Container } from "reactstrap";
 import AppNavBar from "./Components/AppNavBar";
-import { AdsNavbar } from "./Components/Ads";
+import ProfilePage from "./Pages/Profile";
+import HomePage from "./Pages/Home";
 
 function App() {
   return (
     <UserProvider>
       <div>
-        <AppNavBar />
-        <Route component={AdsNavbar} />
-        <Container>
-          <h1>App Component</h1>
-        </Container>
+        <Route component={AppNavBar} />
+        <Switch>
+          <Route path={"/"} exact component={HomePage} />
+          <Route path={"/profile"} component={ProfilePage} />
+        </Switch>
       </div>
     </UserProvider>
   );

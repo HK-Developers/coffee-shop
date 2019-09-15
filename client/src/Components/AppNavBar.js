@@ -4,7 +4,6 @@ import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
   NavLink,
@@ -12,12 +11,12 @@ import {
 import LoginModal from "./LoginModal";
 import { UserContext } from "../Contexts/UserContext";
 
-const AppNavBar = () => {
+const AppNavBar = ({ history }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const [modal, setModal] = useState(false);
 
-  const { isLogin } = useContext(UserContext);
+  const { isLogin, setIsLogin } = useContext(UserContext);
 
   const toggleModal = () => {
     setModal(!modal);
@@ -26,10 +25,18 @@ const AppNavBar = () => {
   const toggle = () => {
     setIsOpen(!isOpen);
   };
+
+  const onLogOut = () => {
+    setIsLogin(false);
+    localStorage.removeItem("auth-token");
+    history.push("/");
+  };
   return (
     <div>
       <Navbar color="dark" dark expand="sm" className="header-navbar">
-        <NavbarBrand href="/">reactstrap</NavbarBrand>
+        <LinkNav to={"/"} className="navbar-brand">
+          Coffee Shop
+        </LinkNav>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
@@ -55,6 +62,15 @@ const AppNavBar = () => {
                 GitHub
               </NavLink>
             </NavItem>
+            {isLogin ? (
+              <NavItem>
+                <LinkNav to="/logout" className={"nav-link"} onClick={onLogOut}>
+                  Logout
+                </LinkNav>
+              </NavItem>
+            ) : (
+              ""
+            )}
           </Nav>
         </Collapse>
       </Navbar>

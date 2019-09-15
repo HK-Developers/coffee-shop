@@ -34,14 +34,14 @@ const LoginModal = ({ modal, toggle, history }) => {
     };
     Axios.post("/api/user/login", user)
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         setIsLogin(true);
         localStorage.setItem("auth-token", res.data.token);
         history.push("/");
         toggle();
       })
       .catch(err => {
-        console.log(err.response.data);
+        // console.log(err.response.data);
         setIsLogin(false);
         localStorage.removeItem("auth-token");
       });

@@ -4,8 +4,6 @@ import {
   CarouselItem,
   CarouselControl,
   CarouselIndicators,
-  // eslint-disable-next-line
-  CarouselCaption,
 } from "reactstrap";
 
 export const AdsNavbar = () => {
@@ -58,7 +56,7 @@ export const AdsNavbar = () => {
   const slides = items.map(item => {
     return (
       <CarouselItem onExiting={onExiting} onExited={onExited} key={item.src}>
-        <img src={item.src} alt={item.altText} />
+        <img src={item.src} alt={item.altText} className={"img-fluid"} />
         {/* <CarouselCaption
           captionText={item.caption}
           captionHeader={item.caption}

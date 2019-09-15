@@ -4,11 +4,25 @@ $tertiary: #998d72;
 $quaternary: #c6a083;
 $quinary: #edc7d9;
 
-a {
+nav.header-navbar a {
   color: white !important;
 }
 
 nav.header-navbar {
   background-color: $tertiary !important;
   padding: 0.65rem 1rem;
+}
+
+body {
+  background-color: #ffffdd;
+}
+
+.list-group-item:hover {
+  text-decoration: none;
+  color: unset;
+}
+
+.profile-active {
+  background-color: $tertiary;
+  color: white;
 }
