@@ -47,15 +47,18 @@ const AppNavBar = ({ history }) => {
                 </LinkNav>
               </NavItem>
             ) : (
-              <NavItem>
-                <LinkNav
-                  to="/login"
-                  className={"nav-link"}
-                  onClick={toggleModal}
-                >
-                  Login
-                </LinkNav>
-              </NavItem>
+              <div className="nav">
+                <NavItem>
+                  <LinkNav to="/" className={"nav-link"} onClick={toggleModal}>
+                    Register
+                  </LinkNav>
+                </NavItem>
+                <NavItem>
+                  <LinkNav to="/" className={"nav-link"} onClick={toggleModal}>
+                    Login
+                  </LinkNav>
+                </NavItem>
+              </div>
             )}
             <NavItem>
               <NavLink href="https://github.com/HK-Developers/coffee-shop">

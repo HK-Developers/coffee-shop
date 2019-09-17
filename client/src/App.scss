@@ -1,3 +1,4 @@
+@import "~bootstrap/scss/bootstrap.scss";
 $primary: #d0d6ed;
 $secondary: #6b8e76;
 $tertiary: #998d72;
@@ -24,5 +25,12 @@ body {
 
 .profile-active {
   background-color: $tertiary;
-  color: white;
+  color: $white;
+}
+.nav-item {
+  padding: 0 0.5rem;
+
+  .nav-link {
+    text-transform: uppercase;
+  }
 }

@@ -1,5 +1,3 @@
-@import "~bootstrap/scss/bootstrap.scss";
-
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -10,10 +8,6 @@ body {
   &::-webkit-scrollbar {
     display: none !important;
   }
-}
-
-#root::-webkit-scrollbar {
-  display: none !important;
 }
 
 code {
