@@ -10,16 +10,23 @@ import {
 } from "reactstrap";
 import LoginModal from "./LoginModal";
 import { UserContext } from "../Contexts/UserContext";
+import RegisterModal from "./RegisterModal";
 
 const AppNavBar = ({ history }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const [modal, setModal] = useState(false);
 
+  const [registerModal, setRegisterModal] = useState(false);
+
   const { isLogin, setIsLogin } = useContext(UserContext);
 
   const toggleModal = () => {
     setModal(!modal);
+  };
+
+  const toggleRegisterModal = () => {
+    setRegisterModal(!registerModal);
   };
 
   const toggle = () => {
@@ -49,25 +56,32 @@ const AppNavBar = ({ history }) => {
             ) : (
               <div className="nav">
                 <NavItem>
-                  <LinkNav to="/" className={"nav-link"} onClick={toggleModal}>
-                    Register
+                  <LinkNav to="#" className={"nav-link"} onClick={toggleModal}>
+                    Login
                   </LinkNav>
                 </NavItem>
                 <NavItem>
-                  <LinkNav to="/" className={"nav-link"} onClick={toggleModal}>
-                    Login
+                  <LinkNav
+                    to="#"
+                    className={"nav-link"}
+                    onClick={toggleRegisterModal}
+                  >
+                    Register
                   </LinkNav>
                 </NavItem>
               </div>
             )}
             <NavItem>
-              <NavLink href="https://github.com/HK-Developers/coffee-shop">
+              <NavLink
+                target="_blank"
+                href="https://github.com/HK-Developers/coffee-shop"
+              >
                 GitHub
               </NavLink>
             </NavItem>
             {isLogin ? (
               <NavItem>
-                <LinkNav to="/logout" className={"nav-link"} onClick={onLogOut}>
+                <LinkNav to="/" className={"nav-link"} onClick={onLogOut}>
                   Logout
                 </LinkNav>
               </NavItem>
@@ -80,6 +94,15 @@ const AppNavBar = ({ history }) => {
       <Route
         render={props => (
           <LoginModal {...props} modal={modal} toggle={toggleModal} />
+        )}
+      />
+      <Route
+        render={props => (
+          <RegisterModal
+            {...props}
+            modal={registerModal}
+            toggle={toggleRegisterModal}
+          />
         )}
       />
     </div>

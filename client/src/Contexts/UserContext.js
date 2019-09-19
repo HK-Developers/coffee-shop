@@ -9,9 +9,9 @@ const UserProvider = ({ children }) => {
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
-    const getUserData = token => {
+    const getUserData = async token => {
       const decoded = jwt(token);
-      Axios.get(`/api/user/${decoded.username}`)
+      await Axios.get(`/api/user/${decoded.username}`)
         .then(res => setUserData(res.data))
         .catch(err => console.log(err));
     };

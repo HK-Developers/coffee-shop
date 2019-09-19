@@ -30,12 +30,24 @@ router.get("/:username", Authentication, async (req, res) => {
 router.post("/register", async (req, res) => {
   const { username, password, email, fullname } = req.body;
 
+  // Search user is Exist with username or email
+  // const findUser = await UserModel.findOne({ $or: [{ username }, { email }] });
+
   const findUser = await UserModel.findOne({ username });
-  if (findUser)
+  if (findUser) {
     return res.status(403).json({
       success: false,
       message: "Username is taken",
     });
+  }
+
+  const findUserEmail = await UserModel.findOne({ email });
+  if (findUserEmail) {
+    return res.status(403).json({
+      success: false,
+      message: "Email is taken",
+    });
+  }
 
   const salt = await bcrypt.genSalt(8);
   const hashPass = await bcrypt.hash(password, salt);
@@ -52,7 +64,10 @@ router.post("/register", async (req, res) => {
 
   try {
     const saveUser = await user.save();
-    return res.send(saveUser);
+    return res.json({
+      success: true,
+      message: "Your account has been registed!",
+    });
   } catch (error) {
     return res.status(400).send(error);
   }
@@ -133,6 +148,7 @@ router.put("/changepass", Authentication, async (req, res) => {
       return res.status(200).json({
         success: true,
         message: "Password changed",
+        result,
       });
     })
     .catch(err => {
