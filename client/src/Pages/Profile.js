@@ -57,8 +57,8 @@ const ListData = ({ match }) => {
   );
 };
 
-const UserInformation = async () => {
-  const { userData } = await useContext(UserContext);
+const UserInformation = () => {
+  const { userData } = useContext(UserContext);
   const onChange = () => {
     console.log(`You can't change this data`);
   };

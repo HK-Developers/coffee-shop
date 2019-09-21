@@ -37,17 +37,17 @@ export const AdsNavbar = () => {
 
   const items = [
     {
-      src: "https://via.placeholder.com/1366x500?text=First&Image",
+      src: "https://via.placeholder.com/1366x600?text=First&Image",
       altText: "Slide 1",
       caption: "Slide 1",
     },
     {
-      src: "https://via.placeholder.com/1366x500?text=Second&Image",
+      src: "https://via.placeholder.com/1366x600?text=Second&Image",
       altText: "Slide 2",
       caption: "Slide 2",
     },
     {
-      src: "https://via.placeholder.com/1366x500?text=Third&Image",
+      src: "https://via.placeholder.com/1366x600?text=Third&Image",
       altText: "Slide 3",
       caption: "Slide 3",
     },
